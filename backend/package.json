@@ -1,0 +1,23 @@
+{
+  "name": "myassignmenttest",
+  "version": "1.0.0",
+  "description": "Assignment Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneworld3/MyAssignmentTest.git"
+  },
+  "author": "Rohit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oneworld3/MyAssignmentTest/issues"
+  },
+  "homepage": "https://github.com/oneworld3/MyAssignmentTest#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.13"
+  }
+}
