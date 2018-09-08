@@ -1,15 +1,21 @@
 //express
 const express = require ('express');
 const app = express();
+const bodyParser = require('body-parser');
+//router
+const router = express.Router();
 
 //Path
 const path = require('path');
+
+//authentication
+const authentication = require('./__routes/authentication')(router);
 
 //mongoose
 const mongoose = require('mongoose');
 
 //database data
-const config = require('./config/database');
+const config = require('./__config/database');
 
 //for the warning in the terminal
 mongoose.Promise = global.Promise;
@@ -23,8 +29,17 @@ mongoose.connect(config.uri, {useNewUrlParser: true}, (err)=>{
     }
 });
 
+//body parser middle ware
+app.use(bodyParser.urlencoded({extended:false}))
+
+//
+app.use(bodyParser.json());
+
 //provide access to the the front end so that it is smoother and faster
 app.use(express.static(path.join(__dirname + '/../frontend/dist/frontend/')));
+
+//authenticate api
+app.use('/authentication',authentication);
 
 //any url
 app.get('*',(req,res)=>{
