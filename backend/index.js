@@ -17,6 +17,9 @@ const mongoose = require('mongoose');
 //database data
 const config = require('./__config/database');
 
+//using cors to take data from the front end
+const cors = require('cors');
+
 //for the warning in the terminal
 mongoose.Promise = global.Promise;
 
@@ -28,6 +31,12 @@ mongoose.connect(config.uri, {useNewUrlParser: true}, (err)=>{
         console.log('Connected to the database!')
     }
 });
+
+//middleware--check while deploying
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
+
 
 //body parser middle ware
 app.use(bodyParser.urlencoded({extended:false}))
